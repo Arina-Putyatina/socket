@@ -20,17 +20,24 @@ public class Main {
                 String resp = in.readLine();
                 System.out.println(resp);
 
-                if (resp.contains("what is your name")) {
-                    out.println("computer");
-                } else if (resp.contains("Are you from Russia")) {
-                    out.println("no");
-                } else if (resp.contains("What country are you from")) {
-                    out.println("Great Britain");
-                } else if (resp.contains("What city are you from")) {
-                    out.println("London");
-                } else {
-                    clientSocket.close();
-                    break;
+                String[] respParts = resp.split("\\.");
+                String questionNumber = respParts[0];
+                switch (questionNumber) {
+                    case "1":
+                        out.println("computer");
+                        break;
+                    case "2":
+                        out.println("no");
+                        break;
+                    case "3":
+                        out.println("Great Britain");
+                        break;
+                    case "4":
+                        out.println("London");
+                        break;
+                    default:
+                        clientSocket.close();
+                        break;
                 }
             }
         } catch (IOException exception) {
