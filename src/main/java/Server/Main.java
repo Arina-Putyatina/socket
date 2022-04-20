@@ -12,9 +12,10 @@ public class Main {
 
         int port = 555;
 
-        String[] dialogue = new String[]{"Hi, what is your name?",
-                "Are you from Russia (yes/no)?",
-                "What city are you from"};
+        String[] dialogue = new String[]{"1. Hi, what is your name?",
+                "are you from Russia (yes/no)?",
+                "4. What city are you from",
+                "3. What country are you from?" };
 
         ServerSocket serverSocket = new ServerSocket(port);
         Socket clientSocket = serverSocket.accept();
@@ -29,18 +30,17 @@ public class Main {
             System.out.println(result);
             switch (currentQuestion) {
                 case 0:
-                    out.println(String.format(dialogue[currentQuestion]));
+                    out.println(dialogue[currentQuestion]);
                     break;
                 case 1:
-//                    out.println(String.format("Hi, %s, %d", result, dialogue[currentQuestion]));
-                    out.println("Hi, " + result + " " + dialogue[currentQuestion]);
+                    out.println(String.format("2. Hi, %s, %s", result, dialogue[currentQuestion]));
                     break;
                 case 2:
                     if (result.equals("no")) {
-                        out.println("What country are you from?");
+                        out.println(dialogue[3]);
                         currentQuestion--;
                     } else {
-                        out.println(String.format(dialogue[currentQuestion]));
+                        out.println(dialogue[currentQuestion]);
                     }
                     break;
                 case 3:
